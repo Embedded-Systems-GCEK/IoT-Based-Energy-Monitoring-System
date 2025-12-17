@@ -1,4 +1,18 @@
+/*
+  Author: Anamika VV
+  Date: 12-12-2025
+*/
+#include <Arduino.h>
 #define pin 2
+
+/*
+1.Initialize serial monitor
+2.Initialize ESP8266 ? i dont know
+3.Display current on serial monitor
+4.Show the result
+5.Go to step 4
+*/
+
 int d;
 void setup() {
   d=5000;
