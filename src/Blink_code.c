@@ -1,4 +1,3 @@
-// Hi Anamika? 👋
 #define pin 2
 int d;
 void setup() {
