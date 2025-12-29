@@ -8,3 +8,16 @@
 3.Convert sensor reading to current 
 4.Calculate energy and power
 */
+// Function Prototype
+#ifndef acs712_H
+#define acs712_H
+#include <Arduino.h>
+
+void initCurrentSensor();
+int readCurrentSensor();
+float convertToCurrent(int adcValue);
+void calculatePowerAndEnergy(float current);
+
+extern float currentValue = 0.0;       // Calculated current
+extern float powerValue = 0.0;         // Power in watts
+extern float energyValue = 0.0;  
