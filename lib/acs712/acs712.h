@@ -18,6 +18,7 @@ int readCurrentSensor();
 float convertToCurrent(int adcValue);
 void calculatePowerAndEnergy(float current);
 
-extern float currentValue = 0.0;       // Calculated current
-extern float powerValue = 0.0;         // Power in watts
-extern float energyValue = 0.0;  
+extern float currentValue;      // Calculated current
+extern float powerValue;         // Power in watts
+extern float energyValue;  
+#endif
