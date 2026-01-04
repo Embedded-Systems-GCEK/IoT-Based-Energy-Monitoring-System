@@ -21,7 +21,11 @@ float timeInterval = 1.0;           // Time interval in seconds
 
 /* Initialize ACS712 sensor pin
  */
-void initCurrentSensor() { pinMode(ACS712_PIN, INPUT); }
+void initCurrentSensor(float voltage) { 
+    pinMode(ACS712_PIN, INPUT);
+    supplyVoltage = voltage;
+}
+
 
 /* Purpose : Read analog value from ACS712
  */
