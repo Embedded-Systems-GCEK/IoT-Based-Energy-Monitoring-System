@@ -12,7 +12,7 @@
 #define acs712_H
 #include <Arduino.h>
 
-void initCurrentSensor();
+void initCurrentSensor(float);
 int readCurrentSensor();
 float convertToCurrent(int adcValue);
 void calculatePowerAndEnergy(float current);
