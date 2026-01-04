@@ -4,6 +4,7 @@
 */
 #include <Arduino.h>
 #include <acs712.h>
+#include <monitoring_server.h>
 
 /*
 1.Initialize serial monitor
@@ -13,10 +14,15 @@
 5.Go to step 4
 */
 
-
+// WiFi credentials
+const char* SSID_PI = "pi_wifi";
+const char* PASSWORD_PI = "12345678";
+ESP8266WebServer server;
+  
 //Pin Definition
 
-
+float voltage = 7.4;
+int port = 8090;
 void setup()
 {
     // Initialize Serial Monitor
@@ -26,8 +32,11 @@ void setup()
 
     // ESP8266 initialization
     // Initialize ACS712 sensor
-    initCurrentSensor();
-}
+    initCurrentSensor(voltage);
+    initMonitoringServer(port,&currentValue,&voltage);
+    WiFi.begin(SSID_PI, PASSWORD_PI);
+   server.on("/data/readings", HTTP_GET, handleReadings);
+  }
 
 // Loop Function
 void loop()
