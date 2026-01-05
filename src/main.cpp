@@ -26,7 +26,7 @@ void setup()
 
     // ESP8266 initialization
     // Initialize ACS712 sensor
-    initCurrentSensor();
+
 }
 
 // Loop Function

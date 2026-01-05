@@ -3,7 +3,7 @@
 
 // Global Variables
 int rawADC = 0;            // Raw ADC value
-float sensorVoltage = 0.0; // Voltage from ACS712 
+float sensorVoltage = 0.0;// Voltage from ACS712 
 float currentValue = 0.0;       // Calculated current
 float powerValue = 0.0;         // Power in watts
 float energyValue = 0.0;        // Energy in watt-hour (Wh)
