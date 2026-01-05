@@ -4,6 +4,7 @@
 */
 #include <Arduino.h>
 #include <acs712.h>
+#include <monitoring_server.h>
 
 /*
 1.Initialize serial monitor
@@ -13,9 +14,14 @@
 5.Go to step 4
 */
 
+// WiFi credentials
+const char* SSID_PI = "pi_wifi";
+const char* PASSWORD_PI = "12345678";
+ESP8266WebServer server;
 
-//Pin Definition
-
+// Pin Definition
+float voltageValue = 230.0;  // Default voltage value
+int port = 8090;
 
 void setup()
 {
@@ -23,10 +29,25 @@ void setup()
     Serial.begin(9600);
     Serial.println("ESP8266 ACS712 Energy Monitoring System");
     Serial.println("--------------------------------------");
+    Serial.println("Enter voltage value (default: 230V):");
+    
+    // Read voltage from user input
+    while(!Serial.available()) {
+        delay(100);
+    }
+    
+    if(Serial.available()) {
+        voltageValue = Serial.parseFloat();
+        Serial.print("Voltage set to: ");
+        Serial.println(voltageValue);
+    }
 
     // ESP8266 initialization
-    // Initialize ACS712 sensor
-
+    // Initialize ACS712 sensor with user-provided voltage
+    initCurrentSensor(voltageValue);
+    initMonitoringServer(port, &currentValue, &voltageValue);
+    WiFi.begin(SSID_PI, PASSWORD_PI);
+    server.on("/data/readings", HTTP_GET, handleReadings);
 }
 
 // Loop Function
